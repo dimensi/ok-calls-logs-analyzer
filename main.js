@@ -13,11 +13,16 @@
     $iFile.addEventListener('change', async (e) => {
         const file = $iFile.files[0];
         const content = await file.text();
-        const data = JSON.parse(content);
-        console.warn(data);
+        try {
+            const data = JSON.parse(content);
+            console.warn(data);
 
-        $controls.classList.remove('disabled');
-        drawLog(data);
+            $controls.classList.remove('disabled');
+            drawLog(data);
+        } catch (err) {
+            $iFile.value = null;
+            alert('Не удалось распарсить файл, возможно, он повреждён');
+        }
     });
 
     for (const $control of [$controlLevelDebug, $controlLevelLog, $controlLevelWarning, $controlLevelError]) {
