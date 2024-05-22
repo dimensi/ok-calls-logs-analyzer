@@ -14,7 +14,7 @@ html, body, input {
     font: 12px / 24px "Space Mono", monospace;
 }
 
-input, label {
+input[type=checkbox], input[type=radio], label {
     cursor: pointer;
 }
 
@@ -36,6 +36,16 @@ input, label {
 }
 .control-sort {
     flex-basis: 100%;
+}
+
+#search {
+    width: 400px;
+    border: 1px solid #ccc;
+    height: 24px;
+    border-radius: 4px;
+    outline: none;
+    padding: 0 5px;
+    box-sizing: border-box;
 }
 
 #result-wrap {
@@ -89,7 +99,7 @@ input, label {
     white-space: nowrap;
 }
 .line.wrap .line-data {
-    white-space: normal;
+    white-space: pre;
     width: calc(100vw - 238px);
 }
 

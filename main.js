@@ -2,6 +2,8 @@
     const $iFile = document.getElementById('file');
     const $result = document.getElementById('result');
 
+    const $iSearch = document.getElementById('search');
+
     const $controls = document.getElementById('controls');
     const $controlLevelDebug = document.getElementById('control-debug');
     const $controlLevelLog = document.getElementById('control-log');
@@ -10,13 +12,19 @@
     const $controlSortAsc = document.getElementById('sort-ask');
     const $controlSortDesk = document.getElementById('sort-desk');
 
+    let currentLog = [];
+
     $iFile.addEventListener('change', async (e) => {
         const file = $iFile.files[0];
         const content = await file.text();
+        currentLog = [];
+
         try {
             const data = JSON.parse(content);
             $controls.classList.remove('disabled');
-            drawLog(data);
+
+            currentLog = data.flat(1);
+            drawLog(currentLog);
         } catch (err) {
             $iFile.value = null;
             alert('Не удалось распарсить файл, возможно, он повреждён');
@@ -35,38 +43,52 @@
         });
     }
 
+    $iSearch.addEventListener('change', () => {
+        const text = $iSearch.value.trim().toLowerCase();
+        if (!text) {
+            drawLog(currentLog);
+        } else {
+            const log = currentLog.filter((item) => JSON.stringify(item.d).toLowerCase().includes(text));
+            drawLog(log);
+        }
+    });
 
-    function logToString(log) {
+
+    function logToString(log, expand = false) {
         return log.map((item) => {
             if (typeof item === 'string' || typeof item === 'number') {
                 return item;
             }
-            return JSON.stringify(item);
+            return JSON.stringify(item, null, expand ? 2 : null);
         }).join(' ');
     }
 
     function drawLine(item) {
-        const text = logToString(item.d);
-
         const $line = document.createElement('div');
         $line.className = `line level-${item.l.toLowerCase()}`;
-        $line.innerHTML = `<div class='line-time'>${item.h}</div>
-<div class='line-data'>${text}</div>`
+
+        const $time = document.createElement('div');
+        $time.className = 'line-time';
+        $time.textContent = item.h;
+        $line.appendChild($time);
+
+        const $data = document.createElement('div');
+        $data.className = 'line-data';
+        $data.textContent = logToString(item.d);
+        $line.appendChild($data);
 
         $line.addEventListener('click', () => {
-            $line.classList.toggle('wrap');
+            const expanded = $line.classList.toggle('wrap');
+            $data.textContent = logToString(item.d, expanded);
         });
 
         $result.appendChild($line);
     }
 
     function drawLog(log) {
+        $result.innerHTML = '';
         for (const item of log) {
-            if (Array.isArray(item)) {
-                drawLog(item);
-            } else {
-                drawLine(item);
-            }
+            drawLine(item);
         }
     }
 
