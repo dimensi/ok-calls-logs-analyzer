@@ -48,7 +48,17 @@
         if (!text) {
             drawLog(currentLog);
         } else {
-            const log = currentLog.filter((item) => JSON.stringify(item.d).toLowerCase().includes(text));
+            const words = text.split(' ');
+
+            const log = currentLog.filter((item) => {
+                const logStr = JSON.stringify(item.d).toLowerCase();
+                for (const word of words) {
+                    if (!logStr.includes(word)) {
+                        return false;
+                    }
+                }
+                return true;
+            });
             drawLog(log);
         }
     });
