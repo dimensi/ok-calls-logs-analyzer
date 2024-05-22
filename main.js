@@ -15,8 +15,6 @@
         const content = await file.text();
         try {
             const data = JSON.parse(content);
-            console.warn(data);
-
             $controls.classList.remove('disabled');
             drawLog(data);
         } catch (err) {

@@ -38,16 +38,19 @@ input, label {
     flex-basis: 100%;
 }
 
-#result {
+#result-wrap {
+    overflow-x: auto;
+    padding: 3px 5px;
     background: #444;
+}
+
+#result {
     color: #fff;
     display: flex;
     flex-direction: column;
-    overflow-x: auto;
     width: fit-content;
     min-width: 100%;
     min-height: 100px;
-    padding: 3px 0;
     box-sizing: border-box;
 }
 #result.no-debug .level-debug,
@@ -65,7 +68,6 @@ input, label {
     display: flex;
     border-bottom: 1px dotted #747474;
     cursor: pointer;
-    padding: 0 5px;
 }
 .level-debug {
     color: #b8b8b8;
@@ -88,6 +90,6 @@ input, label {
 }
 .line.wrap .line-data {
     white-space: normal;
-    width: calc(100vw - 200px);
+    width: calc(100vw - 238px);
 }
 
