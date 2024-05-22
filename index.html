@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VK Calls JS SDK Logs Analyzer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div id="form">
+        <label for="file">Выберите лог-файл</label>
+        <input type="file" id="file" accept="application/json">
+    </div>
+
+
+    <div id="controls" class="disabled">
+        <div class="control">
+            <input type="checkbox" id="control-debug" class="no-debug" checked />
+            <label for="control-debug">Debug</label>
+        </div>
+        <div class="control">
+            <input type="checkbox" id="control-log" class="no-log" checked />
+            <label for="control-log">Log</label>
+        </div>
+        <div class="control">
+            <input type="checkbox" id="control-warning" class="no-warn" checked />
+            <label for="control-warning">Warning</label>
+        </div>
+        <div class="control">
+            <input type="checkbox" id="control-error" class="no-error" checked />
+            <label for="control-error">Error</label>
+        </div>
+
+        <div class="control control-sort">
+            <input type="radio" id="sort-ask" name="sort" value="ask" checked />
+            <label for="sort-ask">Старые сверху</label>
+            <input type="radio" id="sort-desk" name="sort" value="desk" />
+            <label for="sort-desk">Новые сверху</label>
+        </div>
+    </div>
+    <div id="result"></div>
+
+    <script src="main.js"></script>
+</body>
+</html>
