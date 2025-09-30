@@ -6,6 +6,10 @@ export interface LogEntry {
   d: any[]; // data
 }
 
+export interface LogEntryInternal extends LogEntry {
+  key: string; // unique UUID v4
+}
+
 export interface LogFilter {
   debug: boolean;
   log: boolean;

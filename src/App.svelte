@@ -1,13 +1,20 @@
 <script lang="ts">
-  import type { LogEntry, LogFilter, SortOrder } from './types';
+  import type {
+    LogEntry,
+    LogEntryInternal,
+    LogFilter,
+    SortOrder,
+  } from './types';
   import FileUpload from './components/FileUpload.svelte';
   import LogControls from './components/LogControls.svelte';
   import LogDisplay from './components/LogDisplay.svelte';
   import FileName from './components/FileName.svelte';
+  import { LogProcessor } from './utils/logProcessor';
 
-  let currentLog = $state<LogEntry[]>([]);
+  let currentLog = $state<LogEntryInternal[]>([]);
   let isFileLoaded = $state(false);
   let selectedFileName = $state<string | null>(null);
+  let isProcessing = $state(false);
 
   let filters = $state<LogFilter>({
     debug: true,
@@ -66,9 +73,30 @@
     return result;
   });
 
-  function handleFileLoad(logs: LogEntry[]) {
-    currentLog = logs;
-    isFileLoaded = true;
+  async function handleFileLoad(logs: LogEntry[]) {
+    isProcessing = true;
+    isFileLoaded = false;
+
+    try {
+      const processedLogs = LogProcessor.processLogs(logs);
+
+      if (processedLogs instanceof Promise) {
+        // Large dataset - process asynchronously
+        currentLog = await processedLogs;
+      } else {
+        // Small dataset - processed synchronously
+        currentLog = processedLogs;
+      }
+
+      isFileLoaded = true;
+    } catch (error) {
+      console.error('Error processing logs:', error);
+      // Fallback to original logs without IDs
+      currentLog = logs.map((log) => LogProcessor.processSingleLog(log));
+      isFileLoaded = true;
+    } finally {
+      isProcessing = false;
+    }
   }
 
   function handleFiltersChange(newFilters: LogFilter) {
@@ -108,7 +136,12 @@
     </div>
   </header>
 
-  {#if isFileLoaded}
+  {#if isProcessing}
+    <div class="processing-indicator">
+      <div class="spinner"></div>
+      <span>Обработка логов...</span>
+    </div>
+  {:else if isFileLoaded}
     <div class="log-display">
       <LogDisplay logs={filteredLog} />
     </div>
@@ -154,6 +187,37 @@
     .controls {
       margin: 8px 0;
       padding: 8px;
+    }
+  }
+
+  .processing-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 40px;
+    background: #444;
+    border-radius: 8px;
+    margin-top: 10px;
+    color: #fff;
+    font-size: 16px;
+  }
+
+  .spinner {
+    width: 24px;
+    height: 24px;
+    border: 3px solid #666;
+    border-top: 3px solid #007acc;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
     }
   }
 </style>

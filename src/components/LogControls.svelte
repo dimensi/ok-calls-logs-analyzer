@@ -132,17 +132,6 @@
 </div>
 
 <style>
-  .controls {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    margin: 12px 0;
-    padding: 12px;
-    background: #f8f9fa;
-    border-radius: 8px;
-    border: 1px solid #dee2e6;
-  }
-
   .control-filters {
     display: flex;
     flex-direction: column;

@@ -1,9 +1,9 @@
 <script lang="ts">
   import { VList } from 'virtua/svelte';
-  import type { LogEntry } from '../types';
+  import type { LogEntryInternal } from '../types';
 
   interface Props {
-    logs: LogEntry[];
+    logs: LogEntryInternal[];
   }
 
   let { logs }: Props = $props();
@@ -37,7 +37,7 @@
   }
 
   // Calculate item height based on content
-  function getItemHeight(logEntry: LogEntry, index: number): number {
+  function getItemHeight(logEntry: LogEntryInternal, index: number): number {
     const isExpandedLine = isExpanded(index);
     const content = logToString(logEntry.d, isExpandedLine);
 
@@ -63,7 +63,7 @@
   <VList
     data={logs}
     style="height: 100%; width: 100%;"
-    getKey={(_, index) => index}
+    getKey={(logEntry) => logEntry.key}
   >
     {#snippet children(logEntry, index)}
       <div
