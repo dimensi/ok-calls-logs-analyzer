@@ -9,6 +9,7 @@
   import LogControls from './components/LogControls.svelte';
   import LogDisplay from './components/LogDisplay.svelte';
   import FileName from './components/FileName.svelte';
+  import ThemeToggle from './components/ThemeToggle.svelte';
   import { LogProcessor } from './utils/logProcessor';
 
   let currentLog = $state.raw<LogEntryInternal[]>([]);
@@ -114,7 +115,10 @@
 
 <main>
   <header>
-    <h1>VK Calls JS SDK Logs Analyzer</h1>
+    <div class="header-top">
+      <h1>VK Calls JS SDK Logs Analyzer</h1>
+      <ThemeToggle />
+    </div>
 
     <div class="controls">
       <FileUpload onFileLoad={handleFileLoad} bind:selectedFileName />
@@ -158,8 +162,15 @@
       system-ui, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   }
 
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
   h1 {
-    margin: 0 0 20px 0;
+    margin: 0;
     font-size: 18px;
     font-weight: 700;
   }
@@ -177,6 +188,12 @@
 
   /* Адаптивность */
   @media (max-width: 768px) {
+    .header-top {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
     .controls {
       flex-direction: column;
       gap: 12px;
@@ -184,6 +201,14 @@
   }
 
   @media (max-width: 480px) {
+    .header-top {
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 16px;
+    }
+
     .controls {
       margin: 8px 0;
       padding: 8px;
