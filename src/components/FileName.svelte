@@ -34,8 +34,8 @@
   .selected-file {
     margin-top: 12px;
     padding: 8px 12px;
-    background: var(--color-info-bg);
-    border: 1px solid var(--color-info-border);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border-muted);
     border-radius: 6px;
     display: inline-block;
   }
@@ -47,13 +47,13 @@
   }
 
   .file-icon {
-    color: var(--color-icon-info);
+    color: var(--color-text-secondary);
     flex-shrink: 0;
   }
 
   .file-name {
     font-size: 13px;
     font-weight: 500;
-    color: var(--color-info-text);
+    color: var(--color-text-primary);
   }
 </style>

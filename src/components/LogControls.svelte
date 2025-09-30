@@ -137,9 +137,9 @@
     flex-direction: column;
     gap: 6px;
     padding: 8px 12px;
-    background: var(--color-bg-white);
+    background: var(--color-bg-primary);
     border-radius: 6px;
-    border: 1px solid var(--color-border-secondary);
+    border: 1px solid var(--color-border-muted);
     min-width: 120px;
   }
 
@@ -154,16 +154,16 @@
     display: flex;
     gap: 12px;
     padding: 8px 12px;
-    background: var(--color-bg-white);
+    background: var(--color-bg-primary);
     border-radius: 6px;
-    border: 1px solid var(--color-border-secondary);
+    border: 1px solid var(--color-border-muted);
   }
 
   .control-search {
     padding: 8px 12px;
-    background: var(--color-bg-white);
+    background: var(--color-bg-primary);
     border-radius: 6px;
-    border: 1px solid var(--color-border-secondary);
+    border: 1px solid var(--color-border-muted);
   }
 
   .control {
@@ -177,7 +177,7 @@
   }
 
   .control:hover {
-    background: var(--color-hover-bg);
+    background: var(--color-bg-hover);
   }
 
   input[type='checkbox'],
@@ -197,14 +197,14 @@
   label {
     cursor: pointer;
     font-weight: 500;
-    color: var(--color-text-dark);
+    color: var(--color-text-primary);
     transition: color 0.2s ease;
     user-select: none;
     font-size: 14px;
   }
 
   .control:hover label {
-    color: var(--color-hover-text);
+    color: var(--color-text-primary);
   }
 
   /* Стили для разных уровней логов */
@@ -229,61 +229,55 @@
   }
 
   .control:has(#control-debug:checked) {
-    background: var(--color-log-debug-bg);
+    background: rgba(108, 117, 125, 0.2);
     border: 1px solid var(--color-log-debug-border);
   }
 
   .control:has(#control-log:checked) {
-    background: var(--color-log-log-bg);
+    background: rgba(25, 135, 84, 0.2);
     border: 1px solid var(--color-log-log-border);
   }
 
   .control:has(#control-warning:checked) {
-    background: var(--color-log-warn-bg);
+    background: rgba(253, 126, 20, 0.2);
     border: 1px solid var(--color-log-warn-border);
   }
 
   .control:has(#control-error:checked) {
-    background: var(--color-log-error-bg-light);
+    background: rgba(220, 53, 69, 0.2);
     border: 1px solid var(--color-log-error-border);
   }
 
   .control:has(#control-external:checked) {
-    background: var(--color-log-external-bg);
+    background: rgba(111, 66, 193, 0.2);
     border: 1px solid var(--color-log-external-border);
   }
 
   #search {
     width: 100%;
     height: 32px;
-    border: 1px solid var(--color-input-border);
+    border: 1px solid var(--color-border-muted);
     border-radius: 4px;
     outline: none;
     padding: 0 12px;
     box-sizing: border-box;
-    background: var(--color-input-bg);
-    color: var(--color-input-text);
+    background: var(--color-bg-primary);
+    color: var(--color-text-primary);
     font-size: 14px;
     transition: all 0.2s ease;
   }
 
   #search:focus {
-    border-color: var(--color-input-border-focus);
-    box-shadow: 0 0 0 2px var(--color-input-shadow);
+    border-color: var(--color-focus-outline);
+    box-shadow: 0 0 0 2px rgba(0, 122, 204, 0.2);
   }
 
   #search::placeholder {
-    color: var(--color-input-placeholder);
-    font-style: italic;
+    color: var(--color-text-secondary);
   }
 
   /* Адаптивность */
   @media (max-width: 768px) {
-    .controls {
-      flex-direction: column;
-      gap: 12px;
-    }
-
     .control-filters {
       flex-direction: row;
       flex-wrap: wrap;
@@ -300,11 +294,6 @@
   }
 
   @media (max-width: 480px) {
-    .controls {
-      margin: 8px 0;
-      padding: 8px;
-    }
-
     .control-filters {
       flex-direction: column;
     }

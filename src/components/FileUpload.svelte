@@ -225,12 +225,12 @@
 
   /* Компактное поле загрузки */
   .file-upload {
-    border: 2px dashed var(--color-border-dashed);
+    border: 2px dashed var(--color-border-muted);
     border-radius: 8px;
     padding: 12px 16px;
     cursor: pointer;
     transition: all 0.3s ease;
-    background: var(--color-bg-light);
+    background: var(--color-bg-secondary);
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -238,16 +238,16 @@
   }
 
   .file-upload:hover {
-    border-color: var(--color-primary-border);
-    background: var(--color-primary-light);
+    border-color: var(--color-focus-outline);
+    background: var(--color-bg-primary);
     transform: translateY(-1px);
-    box-shadow: 0 2px 8px var(--color-shadow-primary);
+    box-shadow: 0 2px 8px rgba(0, 122, 204, 0.3);
   }
 
   .file-upload:focus {
     outline: none;
-    border-color: var(--color-primary-border);
-    box-shadow: 0 0 0 3px var(--color-shadow-focus);
+    border-color: var(--color-focus-outline);
+    box-shadow: 0 0 0 3px rgba(0, 122, 204, 0.2);
   }
 
   .upload-content {
@@ -257,21 +257,21 @@
   }
 
   .upload-icon {
-    color: var(--color-icon-default);
+    color: var(--color-text-secondary);
     transition: color 0.3s ease;
   }
 
   .file-upload:hover .upload-icon {
-    color: var(--color-icon-hover);
+    color: var(--color-focus-outline);
   }
 
   .upload-text {
     font-size: 14px;
     font-weight: 500;
-    color: var(--color-text-dark);
+    color: var(--color-text-primary);
   }
 
   .file-upload:hover .upload-text {
-    color: var(--color-icon-hover);
+    color: var(--color-focus-outline);
   }
 </style>

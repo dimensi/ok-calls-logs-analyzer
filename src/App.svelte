@@ -170,9 +170,9 @@
     gap: 16px;
     margin: 12px 0;
     padding: 12px;
-    background: var(--color-bg-tertiary);
+    background: var(--color-bg-secondary);
     border-radius: 8px;
-    border: 1px solid var(--color-border-primary);
+    border: 1px solid var(--color-border-muted);
   }
 
   /* Адаптивность */
