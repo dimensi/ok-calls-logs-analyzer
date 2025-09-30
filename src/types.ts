@@ -11,6 +11,7 @@ export interface LogFilter {
   log: boolean;
   warning: boolean;
   error: boolean;
+  external: boolean;
 }
 
 export type SortOrder = 'asc' | 'desc';

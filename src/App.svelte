@@ -14,6 +14,7 @@
     log: true,
     warning: true,
     error: true,
+    external: false,
   });
 
   let sortOrder = $state<SortOrder>('asc');
@@ -39,6 +40,14 @@
           return true;
       }
     });
+
+    // Apply external filter
+    if (filters.external) {
+      result = result.filter((entry) => {
+        const logStr = JSON.stringify(entry.d);
+        return logStr.includes('[external]');
+      });
+    }
 
     // Apply search filter
     if (searchText.trim()) {

@@ -78,6 +78,16 @@
     />
     <label for="control-error">Error</label>
   </div>
+
+  <div class="control">
+    <input
+      type="checkbox"
+      id="control-external"
+      checked={filters.external}
+      onchange={(e) => handleFilterChange('external', e.currentTarget.checked)}
+    />
+    <label for="control-external">External Only</label>
+  </div>
 </div>
 
 <div class="control-group control-right">
@@ -225,6 +235,10 @@
     color: #dc3545;
   }
 
+  .control:has(#control-external) label {
+    color: #6f42c1;
+  }
+
   .control:has(#control-debug:checked) {
     background: #f8f9fa;
     border: 1px solid #6c757d;
@@ -243,6 +257,11 @@
   .control:has(#control-error:checked) {
     background: #f8d7da;
     border: 1px solid #dc3545;
+  }
+
+  .control:has(#control-external:checked) {
+    background: #e2d9f3;
+    border: 1px solid #6f42c1;
   }
 
   #search {
