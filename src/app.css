@@ -1,19 +1,22 @@
-html, body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    background: #555;
-    color: #fff;
-    font: 12px / 24px "Space Mono", monospace;
+  background: #555;
+  color: #fff;
+  font:
+    12px / 24px 'Space Mono',
+    monospace;
 }
 
 #app {
-    min-height: 100vh;
+  min-height: 100vh;
 }

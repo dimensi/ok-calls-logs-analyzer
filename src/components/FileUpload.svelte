@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { LogEntry } from "../types";
+  import type { LogEntry } from '../types';
 
   interface Props {
     onFileLoad: (logs: LogEntry[]) => void;
@@ -19,8 +19,8 @@
       const logs: LogEntry[] = data.flat(1);
       onFileLoad(logs);
     } catch (err) {
-      target.value = "";
-      alert("Не удалось распарсить файл, возможно, он повреждён");
+      target.value = '';
+      alert('Не удалось распарсить файл, возможно, он повреждён');
     }
   }
 </script>
@@ -46,7 +46,7 @@
     cursor: pointer;
   }
 
-  .file-upload input[type="file"] {
+  .file-upload input[type='file'] {
     cursor: pointer;
   }
 </style>

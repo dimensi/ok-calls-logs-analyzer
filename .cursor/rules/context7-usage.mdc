@@ -1,0 +1,28 @@
+---
+description: Context7 documentation usage rules
+---
+
+# Context7 Documentation Usage
+
+## Documentation Reference Requirements
+- **ALWAYS use Context7** for Svelte 5 documentation and examples
+- **NO other documentation sources** - Use only Context7 for Svelte 5 references
+- Reference Context7 for:
+  - Svelte 5 runes syntax (`$state`, `$derived`, `$effect`, `$props`)
+  - Component patterns and best practices
+  - Event handling and reactivity
+  - TypeScript integration with Svelte 5
+  - Build configuration and tooling
+
+## When to Use Context7
+- Before implementing new Svelte 5 features
+- When unsure about runes syntax or usage
+- For component architecture decisions
+- For understanding Svelte 5 specific APIs
+- For troubleshooting Svelte 5 issues
+
+## Context7 Usage Pattern
+1. Query Context7 for Svelte 5 documentation
+2. Use the provided examples and patterns
+3. Implement following Context7 best practices
+4. Reference Context7 for any Svelte 5 specific questions

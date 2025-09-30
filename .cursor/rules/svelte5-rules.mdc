@@ -1,0 +1,35 @@
+---
+alwaysApply: true
+description: Svelte 5 development rules and best practices
+---
+
+# Svelte 5 Development Rules
+
+## Framework Requirements
+- **ONLY use Svelte 5** - This project uses Svelte 5 with runes enabled
+- **NO React, Vue, Angular, or other frameworks** - This is a pure Svelte 5 project
+- **Use Context7 for documentation** - Always reference Context7 for Svelte 5 documentation and examples
+
+## Svelte 5 Runes Usage
+- **ALWAYS use runes** - The project has `runes: true` enabled in [svelte.config.js](mdc:svelte.config.js)
+- Use `$state()` for reactive state instead of `let` declarations
+- Use `$derived()` for computed values instead of `$:` reactive statements
+- Use `$effect()` for side effects instead of `$:` reactive statements
+- Use `$props()` for component props instead of `export let`
+
+## Code Style
+- Use TypeScript for all `.svelte` files with `<script lang="ts">`
+- Follow the existing patterns in [App.svelte](mdc:src/App.svelte)
+- Use proper TypeScript types from [types.ts](mdc:src/types.ts)
+- Maintain consistent naming conventions (camelCase for variables, PascalCase for components)
+
+## Component Structure
+- Place components in [src/components/](mdc:src/components/) directory
+- Use proper Svelte 5 component syntax with runes
+- Follow the existing component patterns in the project
+- Use proper event handling with callback props
+
+## Documentation Reference
+- **ALWAYS use Context7** for Svelte 5 documentation and examples
+- Reference Context7 for runes syntax, component patterns, and best practices
+- Use Context7 to understand Svelte 5 specific features and APIs

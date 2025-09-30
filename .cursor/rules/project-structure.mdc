@@ -1,0 +1,30 @@
+---
+alwaysApply: true
+description: Project structure and file organization rules
+---
+
+# Project Structure Rules
+
+## Main Entry Points
+- Main application: [App.svelte](mdc:src/App.svelte)
+- Type definitions: [types.ts](mdc:src/types.ts)
+- Build configuration: [svelte.config.js](mdc:svelte.config.js)
+- Package configuration: [package.json](mdc:package.json)
+
+## Component Organization
+- Components directory: [src/components/](mdc:src/components/)
+- Main components:
+  - [FileUpload.svelte](mdc:src/components/FileUpload.svelte) - File upload functionality
+  - [LogControls.svelte](mdc:src/components/LogControls.svelte) - Log filtering and controls
+  - [LogDisplay.svelte](mdc:src/components/LogDisplay.svelte) - Log display and rendering
+
+## File Naming Conventions
+- Components: PascalCase (e.g., `LogDisplay.svelte`)
+- Utilities: camelCase (e.g., `types.ts`)
+- Configuration: kebab-case (e.g., `svelte.config.js`)
+
+## Project Type
+- **VK Calls JS SDK Logs Analyzer** - Analyzes VK Calls JavaScript SDK logs
+- Uses Svelte 5 with TypeScript
+- Vite build system
+- Monospace font styling for log display

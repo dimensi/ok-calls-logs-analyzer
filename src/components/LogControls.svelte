@@ -10,7 +10,14 @@
     onSearchChange: (searchText: string) => void;
   }
 
-  let { filters, sortOrder, searchText, onFiltersChange, onSortChange, onSearchChange }: Props = $props();
+  let {
+    filters,
+    sortOrder,
+    searchText,
+    onFiltersChange,
+    onSortChange,
+    onSearchChange,
+  }: Props = $props();
 
   function handleFilterChange(level: keyof LogFilter, checked: boolean) {
     const newFilters = { ...filters, [level]: checked };
@@ -31,39 +38,39 @@
 <div class="controls">
   <div class="control-group">
     <div class="control">
-      <input 
-        type="checkbox" 
-        id="control-debug" 
+      <input
+        type="checkbox"
+        id="control-debug"
         checked={filters.debug}
         onchange={(e) => handleFilterChange('debug', e.currentTarget.checked)}
       />
       <label for="control-debug">Debug</label>
     </div>
-    
+
     <div class="control">
-      <input 
-        type="checkbox" 
-        id="control-log" 
+      <input
+        type="checkbox"
+        id="control-log"
         checked={filters.log}
         onchange={(e) => handleFilterChange('log', e.currentTarget.checked)}
       />
       <label for="control-log">Log</label>
     </div>
-    
+
     <div class="control">
-      <input 
-        type="checkbox" 
-        id="control-warning" 
+      <input
+        type="checkbox"
+        id="control-warning"
         checked={filters.warning}
         onchange={(e) => handleFilterChange('warning', e.currentTarget.checked)}
       />
       <label for="control-warning">Warning</label>
     </div>
-    
+
     <div class="control">
-      <input 
-        type="checkbox" 
-        id="control-error" 
+      <input
+        type="checkbox"
+        id="control-error"
         checked={filters.error}
         onchange={(e) => handleFilterChange('error', e.currentTarget.checked)}
       />
@@ -73,23 +80,23 @@
 
   <div class="control-group control-sort">
     <div class="control">
-      <input 
-        type="radio" 
-        id="sort-asc" 
-        name="sort" 
-        value="asc" 
+      <input
+        type="radio"
+        id="sort-asc"
+        name="sort"
+        value="asc"
         checked={sortOrder === 'asc'}
         onchange={handleSortChange}
       />
       <label for="sort-asc">Старые сверху</label>
     </div>
-    
+
     <div class="control">
-      <input 
-        type="radio" 
-        id="sort-desc" 
-        name="sort" 
-        value="desc" 
+      <input
+        type="radio"
+        id="sort-desc"
+        name="sort"
+        value="desc"
         checked={sortOrder === 'desc'}
         onchange={handleSortChange}
       />
@@ -98,10 +105,10 @@
   </div>
 
   <div class="control-group control-filter">
-    <input 
-      type="text" 
-      id="search" 
-      placeholder="Введите текст, нажмите Enter" 
+    <input
+      type="text"
+      id="search"
+      placeholder="Введите текст, нажмите Enter"
       autocomplete="off"
       bind:value={searchText}
       oninput={handleSearchChange}
@@ -133,8 +140,8 @@
     gap: 5px;
   }
 
-  input[type="checkbox"], 
-  input[type="radio"], 
+  input[type='checkbox'],
+  input[type='radio'],
   label {
     cursor: pointer;
   }

@@ -12,7 +12,7 @@
     debug: true,
     log: true,
     warning: true,
-    error: true
+    error: true,
   });
 
   let sortOrder = $state<SortOrder>('asc');
@@ -25,7 +25,7 @@
     let result = [...currentLog];
 
     // Apply level filters
-    result = result.filter(entry => {
+    result = result.filter((entry) => {
       switch (entry.l) {
         case 'debug':
           return filters.debug;
@@ -43,9 +43,9 @@
     // Apply search filter
     if (searchText.trim()) {
       const words = searchText.trim().toLowerCase().split(' ');
-      result = result.filter(entry => {
+      result = result.filter((entry) => {
         const logStr = JSON.stringify(entry.d).toLowerCase();
-        return words.every(word => logStr.includes(word));
+        return words.every((word) => logStr.includes(word));
       });
     }
 
@@ -77,11 +77,11 @@
 
 <main>
   <h1>VK Calls JS SDK Logs Analyzer</h1>
-  
+
   <FileUpload onFileLoad={handleFileLoad} />
-  
+
   {#if isFileLoaded}
-    <LogControls 
+    <LogControls
       {filters}
       {sortOrder}
       {searchText}
@@ -89,7 +89,7 @@
       onSortChange={handleSortChange}
       onSearchChange={handleSearchChange}
     />
-    
+
     <LogDisplay logs={filteredLog()} />
   {/if}
 </main>
@@ -100,7 +100,9 @@
     background: #555;
     color: #fff;
     min-height: 100vh;
-    font: 12px / 24px "Space Mono", monospace;
+    font:
+      12px / 24px 'Space Mono',
+      monospace;
   }
 
   h1 {
