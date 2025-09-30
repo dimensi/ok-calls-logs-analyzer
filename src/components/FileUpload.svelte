@@ -165,7 +165,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(16, 185, 129, 0.1);
+    background: var(--color-drag-overlay);
     backdrop-filter: blur(4px);
     z-index: 1000;
     display: flex;
@@ -176,7 +176,7 @@
 
   .drag-message {
     text-align: center;
-    color: #10b981;
+    color: var(--color-drag-text);
   }
 
   .drag-icon {
@@ -225,12 +225,12 @@
 
   /* Компактное поле загрузки */
   .file-upload {
-    border: 2px dashed #d1d5db;
+    border: 2px dashed var(--color-border-dashed);
     border-radius: 8px;
     padding: 12px 16px;
     cursor: pointer;
     transition: all 0.3s ease;
-    background: #f9fafb;
+    background: var(--color-bg-light);
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -238,16 +238,16 @@
   }
 
   .file-upload:hover {
-    border-color: #3b82f6;
-    background: #eff6ff;
+    border-color: var(--color-primary-border);
+    background: var(--color-primary-light);
     transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.15);
+    box-shadow: 0 2px 8px var(--color-shadow-primary);
   }
 
   .file-upload:focus {
     outline: none;
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    border-color: var(--color-primary-border);
+    box-shadow: 0 0 0 3px var(--color-shadow-focus);
   }
 
   .upload-content {
@@ -257,21 +257,21 @@
   }
 
   .upload-icon {
-    color: #6b7280;
+    color: var(--color-icon-default);
     transition: color 0.3s ease;
   }
 
   .file-upload:hover .upload-icon {
-    color: #3b82f6;
+    color: var(--color-icon-hover);
   }
 
   .upload-text {
     font-size: 14px;
     font-weight: 500;
-    color: #374151;
+    color: var(--color-text-dark);
   }
 
   .file-upload:hover .upload-text {
-    color: #3b82f6;
+    color: var(--color-icon-hover);
   }
 </style>

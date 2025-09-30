@@ -104,7 +104,7 @@
 
 <style>
   .result-wrap {
-    background: #444;
+    background: var(--color-bg-secondary);
     margin-top: 10px;
     min-height: 400px;
     height: calc(100vh - 300px);
@@ -115,7 +115,7 @@
 
   .line {
     display: flex;
-    border-bottom: 1px dotted #747474;
+    border-bottom: 1px dotted var(--color-border-muted);
     cursor: pointer;
     transition: background-color 0.2s;
     padding: 2px 5px;
@@ -124,44 +124,40 @@
   }
 
   .line:hover {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: var(--color-bg-hover);
   }
 
   .line:focus {
-    outline: 2px solid #007acc;
+    outline: 2px solid var(--color-focus-outline);
     outline-offset: -2px;
   }
 
   .level-debug {
-    color: #b8b8b8;
+    color: var(--color-log-debug);
   }
 
   .level-log {
-    color: #fff;
+    color: var(--color-log-log);
   }
 
   .level-warn {
-    color: #ffbd00;
+    color: var(--color-log-warn);
   }
 
   .level-error {
-    background: #a40000;
+    background: var(--color-log-error-bg);
   }
 
   .line-time {
-    color: #bbb;
+    color: var(--color-text-secondary);
     white-space: nowrap;
     width: 200px;
     flex-shrink: 0;
-    font-family: 'Courier New', monospace;
-    font-size: 12px;
   }
 
   .line-data {
     white-space: nowrap;
     flex: 1;
-    font-family: 'Courier New', monospace;
-    font-size: 12px;
     overflow: hidden;
     text-overflow: ellipsis;
   }

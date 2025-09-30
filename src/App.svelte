@@ -151,8 +151,8 @@
 <style>
   main {
     padding: 14px 14px;
-    background: #555;
-    color: #fff;
+    background: var(--color-bg-primary);
+    color: var(--color-text-primary);
     min-height: 100vh;
     font-family:
       system-ui, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
@@ -170,9 +170,9 @@
     gap: 16px;
     margin: 12px 0;
     padding: 12px;
-    background: #f8f9fa;
+    background: var(--color-bg-tertiary);
     border-radius: 8px;
-    border: 1px solid #dee2e6;
+    border: 1px solid var(--color-border-primary);
   }
 
   /* Адаптивность */
@@ -196,18 +196,18 @@
     justify-content: center;
     gap: 12px;
     padding: 40px;
-    background: #444;
+    background: var(--color-bg-secondary);
     border-radius: 8px;
     margin-top: 10px;
-    color: #fff;
+    color: var(--color-text-primary);
     font-size: 16px;
   }
 
   .spinner {
     width: 24px;
     height: 24px;
-    border: 3px solid #666;
-    border-top: 3px solid #007acc;
+    border: 3px solid var(--color-spinner-bg);
+    border-top: 3px solid var(--color-spinner-active);
     border-radius: 50%;
     animation: spin 1s linear infinite;
   }

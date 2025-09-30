@@ -137,9 +137,9 @@
     flex-direction: column;
     gap: 6px;
     padding: 8px 12px;
-    background: #ffffff;
+    background: var(--color-bg-white);
     border-radius: 6px;
-    border: 1px solid #e9ecef;
+    border: 1px solid var(--color-border-secondary);
     min-width: 120px;
   }
 
@@ -154,16 +154,16 @@
     display: flex;
     gap: 12px;
     padding: 8px 12px;
-    background: #ffffff;
+    background: var(--color-bg-white);
     border-radius: 6px;
-    border: 1px solid #e9ecef;
+    border: 1px solid var(--color-border-secondary);
   }
 
   .control-search {
     padding: 8px 12px;
-    background: #ffffff;
+    background: var(--color-bg-white);
     border-radius: 6px;
-    border: 1px solid #e9ecef;
+    border: 1px solid var(--color-border-secondary);
   }
 
   .control {
@@ -177,7 +177,7 @@
   }
 
   .control:hover {
-    background: #f8f9fa;
+    background: var(--color-hover-bg);
   }
 
   input[type='checkbox'],
@@ -185,7 +185,7 @@
     width: 16px;
     height: 16px;
     cursor: pointer;
-    accent-color: #0d6efd;
+    accent-color: var(--color-checkbox-accent);
     transition: all 0.2s ease;
   }
 
@@ -197,83 +197,83 @@
   label {
     cursor: pointer;
     font-weight: 500;
-    color: #495057;
+    color: var(--color-text-dark);
     transition: color 0.2s ease;
     user-select: none;
     font-size: 14px;
   }
 
   .control:hover label {
-    color: #0d6efd;
+    color: var(--color-hover-text);
   }
 
   /* Стили для разных уровней логов */
   .control:has(#control-debug) label {
-    color: #6c757d;
+    color: var(--color-text-light);
   }
 
   .control:has(#control-log) label {
-    color: #198754;
+    color: var(--color-log-log-accent);
   }
 
   .control:has(#control-warning) label {
-    color: #fd7e14;
+    color: var(--color-log-warn-accent);
   }
 
   .control:has(#control-error) label {
-    color: #dc3545;
+    color: var(--color-log-error-accent);
   }
 
   .control:has(#control-external) label {
-    color: #6f42c1;
+    color: var(--color-log-external-accent);
   }
 
   .control:has(#control-debug:checked) {
-    background: #f8f9fa;
-    border: 1px solid #6c757d;
+    background: var(--color-log-debug-bg);
+    border: 1px solid var(--color-log-debug-border);
   }
 
   .control:has(#control-log:checked) {
-    background: #d1e7dd;
-    border: 1px solid #198754;
+    background: var(--color-log-log-bg);
+    border: 1px solid var(--color-log-log-border);
   }
 
   .control:has(#control-warning:checked) {
-    background: #fff3cd;
-    border: 1px solid #fd7e14;
+    background: var(--color-log-warn-bg);
+    border: 1px solid var(--color-log-warn-border);
   }
 
   .control:has(#control-error:checked) {
-    background: #f8d7da;
-    border: 1px solid #dc3545;
+    background: var(--color-log-error-bg-light);
+    border: 1px solid var(--color-log-error-border);
   }
 
   .control:has(#control-external:checked) {
-    background: #e2d9f3;
-    border: 1px solid #6f42c1;
+    background: var(--color-log-external-bg);
+    border: 1px solid var(--color-log-external-border);
   }
 
   #search {
     width: 100%;
     height: 32px;
-    border: 1px solid #e9ecef;
+    border: 1px solid var(--color-input-border);
     border-radius: 4px;
     outline: none;
     padding: 0 12px;
     box-sizing: border-box;
-    background: #ffffff;
-    color: #495057;
+    background: var(--color-input-bg);
+    color: var(--color-input-text);
     font-size: 14px;
     transition: all 0.2s ease;
   }
 
   #search:focus {
-    border-color: #0d6efd;
-    box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.1);
+    border-color: var(--color-input-border-focus);
+    box-shadow: 0 0 0 2px var(--color-input-shadow);
   }
 
   #search::placeholder {
-    color: #6c757d;
+    color: var(--color-input-placeholder);
     font-style: italic;
   }
 

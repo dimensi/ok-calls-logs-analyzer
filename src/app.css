@@ -1,3 +1,5 @@
+@import './tokens.css';
+
 html,
 body {
   margin: 0;
@@ -10,8 +12,8 @@ body {
 }
 
 body {
-  background: #555;
-  color: #fff;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
   font:
     12px / 24px 'Space Mono',
     monospace;
