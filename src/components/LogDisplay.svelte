@@ -32,6 +32,10 @@
     }
   }
 
+  export function resetExpanded() {
+    expandedLines.clear();
+  }
+
   // Calculate item height based on content
   function getItemHeight(logEntry: LogEntryInternal): number {
     const isExpandedLine = expandedLines.has(logEntry.key);

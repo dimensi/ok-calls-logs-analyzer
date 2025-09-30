@@ -9,6 +9,7 @@
     onFiltersChange: (filters: LogFilter) => void;
     onSortChange: (sortOrder: SortOrder) => void;
     onSearchChange: (searchText: string) => void;
+    onResetExpanded?: () => void;
     children?: Snippet;
   }
 
@@ -19,6 +20,7 @@
     onFiltersChange,
     onSortChange,
     onSearchChange,
+    onResetExpanded,
     children,
   }: Props = $props();
 
@@ -129,6 +131,19 @@
       oninput={handleSearchChange}
     />
   </div>
+
+  {#if onResetExpanded}
+    <div class="control-reset">
+      <button
+        type="button"
+        onclick={onResetExpanded}
+        class="reset-button"
+        title="Свернуть все развернутые строки"
+      >
+        Свернуть все
+      </button>
+    </div>
+  {/if}
 </div>
 
 <style>
@@ -160,6 +175,13 @@
   }
 
   .control-search {
+    padding: 8px 12px;
+    background: var(--color-bg-primary);
+    border-radius: 6px;
+    border: 1px solid var(--color-border-muted);
+  }
+
+  .control-reset {
     padding: 8px 12px;
     background: var(--color-bg-primary);
     border-radius: 6px;
@@ -274,6 +296,31 @@
 
   #search::placeholder {
     color: var(--color-text-secondary);
+  }
+
+  .reset-button {
+    width: 100%;
+    height: 32px;
+    border: 1px solid var(--color-border-muted);
+    border-radius: 4px;
+    background: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .reset-button:hover {
+    background: var(--color-bg-hover);
+    border-color: var(--color-focus-outline);
+  }
+
+  .reset-button:active {
+    transform: translateY(1px);
   }
 
   /* Адаптивность */

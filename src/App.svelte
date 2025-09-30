@@ -27,6 +27,7 @@
 
   let sortOrder = $state<SortOrder>('asc');
   let searchText = $state('');
+  let logDisplayRef = $state<LogDisplay | undefined>(undefined);
 
   let filteredLog = $derived.by(() => {
     if (!isFileLoaded) return [];
@@ -111,6 +112,12 @@
   function handleSearchChange(newSearchText: string) {
     searchText = newSearchText;
   }
+
+  function handleResetExpanded() {
+    if (logDisplayRef) {
+      logDisplayRef.resetExpanded();
+    }
+  }
 </script>
 
 <main>
@@ -131,6 +138,7 @@
           onFiltersChange={handleFiltersChange}
           onSortChange={handleSortChange}
           onSearchChange={handleSearchChange}
+          onResetExpanded={handleResetExpanded}
         >
           {#if selectedFileName}
             <FileName {selectedFileName} />
@@ -147,7 +155,7 @@
     </div>
   {:else if isFileLoaded}
     <div class="log-display">
-      <LogDisplay logs={filteredLog} />
+      <LogDisplay logs={filteredLog} bind:this={logDisplayRef} />
     </div>
   {/if}
 </main>
