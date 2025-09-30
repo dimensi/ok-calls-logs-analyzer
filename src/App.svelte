@@ -11,7 +11,7 @@
   import FileName from './components/FileName.svelte';
   import { LogProcessor } from './utils/logProcessor';
 
-  let currentLog = $state<LogEntryInternal[]>([]);
+  let currentLog = $state.raw<LogEntryInternal[]>([]);
   let isFileLoaded = $state(false);
   let selectedFileName = $state<string | null>(null);
   let isProcessing = $state(false);

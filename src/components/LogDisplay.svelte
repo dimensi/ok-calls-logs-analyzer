@@ -1,15 +1,17 @@
 <script lang="ts">
-  import { VList } from 'virtua/svelte';
+  import { VList, type VListHandle } from 'virtua/svelte';
   import type { LogEntryInternal } from '../types';
+  import { SvelteSet } from 'svelte/reactivity';
 
   interface Props {
     logs: LogEntryInternal[];
   }
 
   let { logs }: Props = $props();
-
+  let internalLogs = $state.raw<LogEntryInternal[]>(logs);
+  let list = $state<VListHandle>();
   // State for expanded lines
-  let expandedLines = $state<Set<number>>(new Set());
+  let expandedLines = new SvelteSet<string>();
 
   function logToString(log: any[], expand = false): string {
     return log
@@ -22,23 +24,17 @@
       .join(' ');
   }
 
-  function toggleExpand(index: number) {
-    if (expandedLines.has(index)) {
-      expandedLines.delete(index);
+  function toggleExpand(logEntryKey: string) {
+    if (expandedLines.has(logEntryKey)) {
+      expandedLines.delete(logEntryKey);
     } else {
-      expandedLines.add(index);
+      expandedLines.add(logEntryKey);
     }
-    // Trigger reactivity
-    expandedLines = new Set(expandedLines);
-  }
-
-  function isExpanded(index: number): boolean {
-    return expandedLines.has(index);
   }
 
   // Calculate item height based on content
-  function getItemHeight(logEntry: LogEntryInternal, index: number): number {
-    const isExpandedLine = isExpanded(index);
+  function getItemHeight(logEntry: LogEntryInternal): number {
+    const isExpandedLine = expandedLines.has(logEntry.key);
     const content = logToString(logEntry.d, isExpandedLine);
 
     // Базовая высота для времени + отступы
@@ -57,31 +53,53 @@
       return baseHeight;
     }
   }
+
+  function restoreScrollPosition() {
+    const index = internalLogs.findIndex(
+      (log) => log.key === [...expandedLines.values()].at(-1)
+    );
+
+    if (index !== -1) {
+      list?.scrollToIndex(index);
+    }
+  }
+
+  $effect(() => {
+    if (internalLogs !== logs) {
+      internalLogs = logs;
+      if (expandedLines.size > 0) {
+        setTimeout(restoreScrollPosition, 50);
+      }
+    }
+  });
 </script>
 
 <div class="result-wrap">
-  <VList
-    data={logs}
-    style="height: 100%; width: 100%;"
-    getKey={(logEntry) => logEntry.key}
-  >
-    {#snippet children(logEntry, index)}
-      <div
-        class="line level-{logEntry.l.toLowerCase()}"
-        class:wrap={isExpanded(index)}
-        onclick={() => toggleExpand(index)}
-        role="button"
-        tabindex="0"
-        onkeydown={(e) => e.key === 'Enter' && toggleExpand(index)}
-        style="height: {getItemHeight(logEntry, index)}px;"
-      >
-        <div class="line-time">{logEntry.h}</div>
-        <div class="line-data">
-          {logToString(logEntry.d, isExpanded(index))}
+  {#if internalLogs.length > 0}
+    <VList
+      bind:this={list}
+      data={internalLogs}
+      style="height: 100%; width: 100%;"
+      getKey={(logEntry) => logEntry.key}
+    >
+      {#snippet children(logEntry)}
+        <div
+          class="line level-{logEntry.l.toLowerCase()}"
+          class:wrap={expandedLines.has(logEntry.key)}
+          onclick={() => toggleExpand(logEntry.key)}
+          role="button"
+          tabindex="0"
+          onkeydown={(e) => e.key === 'Enter' && toggleExpand(logEntry.key)}
+          style="height: {getItemHeight(logEntry)}px;"
+        >
+          <div class="line-time">{logEntry.h}</div>
+          <div class="line-data">
+            {logToString(logEntry.d, expandedLines.has(logEntry.key))}
+          </div>
         </div>
-      </div>
-    {/snippet}
-  </VList>
+      {/snippet}
+    </VList>
+  {/if}
 </div>
 
 <style>
