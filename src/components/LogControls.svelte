@@ -122,14 +122,26 @@
   </div>
 
   <div class="control-search">
-    <input
-      type="text"
-      id="search"
-      placeholder="Поиск по логам..."
-      autocomplete="off"
-      bind:value={searchText}
-      oninput={handleSearchChange}
-    />
+    <div class="search-container">
+      <input
+        type="text"
+        id="search"
+        placeholder="Поиск по логам..."
+        autocomplete="off"
+        bind:value={searchText}
+        oninput={handleSearchChange}
+      />
+      {#if searchText}
+        <button
+          type="button"
+          class="clear-button"
+          onclick={() => onSearchChange('')}
+          title="Очистить поиск"
+        >
+          ×
+        </button>
+      {/if}
+    </div>
   </div>
 
   {#if onResetExpanded}
@@ -179,6 +191,12 @@
     background: var(--color-bg-primary);
     border-radius: 6px;
     border: 1px solid var(--color-border-muted);
+  }
+
+  .search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
   }
 
   .control-reset {
@@ -296,6 +314,38 @@
 
   #search::placeholder {
     color: var(--color-text-secondary);
+  }
+
+  .clear-button {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: none;
+    background: var(--color-bg-secondary);
+    color: var(--color-text-secondary);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1;
+    transition: all 0.2s ease;
+    z-index: 1;
+  }
+
+  .clear-button:hover {
+    background: var(--color-bg-hover);
+    color: var(--color-text-primary);
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .clear-button:active {
+    transform: translateY(-50%) scale(0.95);
   }
 
   .reset-button {
