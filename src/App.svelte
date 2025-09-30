@@ -74,33 +74,38 @@
 </script>
 
 <main>
-  <h1>VK Calls JS SDK Logs Analyzer</h1>
+  <header>
+    <h1>VK Calls JS SDK Logs Analyzer</h1>
 
-  <FileUpload onFileLoad={handleFileLoad} />
+    <FileUpload onFileLoad={handleFileLoad} />
+
+    {#if isFileLoaded}
+      <LogControls
+        {filters}
+        {sortOrder}
+        {searchText}
+        onFiltersChange={handleFiltersChange}
+        onSortChange={handleSortChange}
+        onSearchChange={handleSearchChange}
+      />
+    {/if}
+  </header>
 
   {#if isFileLoaded}
-    <LogControls
-      {filters}
-      {sortOrder}
-      {searchText}
-      onFiltersChange={handleFiltersChange}
-      onSortChange={handleSortChange}
-      onSearchChange={handleSearchChange}
-    />
-
-    <LogDisplay logs={filteredLog} />
+    <div class="log-display">
+      <LogDisplay logs={filteredLog} />
+    </div>
   {/if}
 </main>
 
 <style>
   main {
-    padding: 14px;
+    padding: 14px 14px;
     background: #555;
     color: #fff;
     min-height: 100vh;
-    font:
-      12px / 24px 'Space Mono',
-      monospace;
+    font-family:
+      system-ui, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   }
 
   h1 {

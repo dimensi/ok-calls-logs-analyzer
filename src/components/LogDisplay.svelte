@@ -62,7 +62,7 @@
 <div class="result-wrap">
   <VList
     data={logs}
-    style="height: 100vh; width: 100%;"
+    style="height: 100%; width: 100%;"
     getKey={(_, index) => index}
   >
     {#snippet children(logEntry, index)}
@@ -88,8 +88,11 @@
   .result-wrap {
     background: #444;
     margin-top: 10px;
-    height: calc(100vh - 200px); /* Adjust based on your layout */
     min-height: 400px;
+    height: calc(100vh - 300px);
+    font:
+      12px / 24px 'Space Mono',
+      monospace;
   }
 
   .line {
