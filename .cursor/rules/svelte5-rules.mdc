@@ -33,3 +33,13 @@ description: Svelte 5 development rules and best practices
 - **ALWAYS use Context7** for Svelte 5 documentation and examples
 - Reference Context7 for runes syntax, component patterns, and best practices
 - Use Context7 to understand Svelte 5 specific features and APIs
+
+## Git Commit Rules
+- **ALWAYS use Conventional Commits** format for all commit messages
+- Format: `<type>(<scope>): <description>`
+- Common types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
+- Examples:
+  - `feat: add log filtering functionality`
+  - `fix(components): resolve LogDisplay rendering issue`
+  - `refactor: update to Svelte 5 runes syntax`
+  - `chore: update dependencies`

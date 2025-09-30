@@ -1,0 +1,54 @@
+---
+alwaysApply: true
+description: Conventional Commits format requirements
+---
+
+# Conventional Commits - ОБЯЗАТЕЛЬНО
+
+## КРИТИЧЕСКИ ВАЖНО
+- **ВСЕГДА используйте Conventional Commits** для каждого коммита
+- **НИКОГДА не пишите обычные сообщения коммитов**
+- **ОБЯЗАТЕЛЬНЫЙ формат**: `<type>(<scope>): <description>`
+
+## Формат коммитов
+```
+<type>(<scope>): <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+## Типы коммитов
+- `feat`: новая функциональность
+- `fix`: исправление бага
+- `docs`: изменения в документации
+- `style`: форматирование, отсутствующие точки с запятой и т.д.
+- `refactor`: рефакторинг кода
+- `test`: добавление тестов
+- `chore`: обновление задач сборки, конфигурации и т.д.
+
+## Примеры для этого проекта
+- `feat: add log filtering functionality`
+- `fix(LogDisplay): resolve rendering issue with large logs`
+- `refactor(components): update to Svelte 5 runes syntax`
+- `chore: update dependencies`
+- `docs: add project structure documentation`
+- `style(LogControls): improve button layout`
+
+## Области (scope) для проекта
+- `components`: изменения в компонентах
+- `types`: изменения в типах TypeScript
+- `config`: изменения в конфигурации
+- `build`: изменения в сборке
+
+## НЕ ДЕЛАЙТЕ
+- ❌ `Update LogDisplay component`
+- ❌ `Fix bug`
+- ❌ `Add new feature`
+- ❌ `Refactor code`
+
+## ДЕЛАЙТЕ
+- ✅ `fix(LogDisplay): resolve rendering issue`
+- ✅ `feat: add log filtering functionality`
+- ✅ `refactor(components): update to Svelte 5 runes`
