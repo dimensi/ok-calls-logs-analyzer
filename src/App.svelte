@@ -4,7 +4,6 @@
   import LogControls from './components/LogControls.svelte';
   import LogDisplay from './components/LogDisplay.svelte';
 
-  // State using Svelte 5 runes
   let currentLog = $state<LogEntry[]>([]);
   let isFileLoaded = $state(false);
 
@@ -18,15 +17,14 @@
   let sortOrder = $state<SortOrder>('asc');
   let searchText = $state('');
 
-  // Derived state - automatically recalculates when dependencies change
-  let filteredLog = $derived(() => {
+  let filteredLog = $derived.by(() => {
     if (!isFileLoaded) return [];
 
     let result = [...currentLog];
 
     // Apply level filters
     result = result.filter((entry) => {
-      switch (entry.l) {
+      switch (entry.l.toLowerCase()) {
         case 'debug':
           return filters.debug;
         case 'log':
@@ -90,7 +88,7 @@
       onSearchChange={handleSearchChange}
     />
 
-    <LogDisplay logs={filteredLog()} />
+    <LogDisplay logs={filteredLog} />
   {/if}
 </main>
 
