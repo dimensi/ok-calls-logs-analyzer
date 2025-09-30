@@ -132,3 +132,4 @@ The `FileUpload` component expects:
 - Each component has scoped CSS
 - Dark theme with monospace fonts ("Space Mono")
 - Color-coded log levels (debug: gray, log: white, warn: yellow, error: red background)
+- Custom favicon representing log analysis (SVG + ICO formats)
