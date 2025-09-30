@@ -13,6 +13,7 @@ This is a **VK Calls JS SDK Logs Analyzer** - a Svelte 5 web application that pa
 - **Start development server**: `npm run dev` (runs on port 3000)
 - **Build for production**: `npm run build`
 - **Preview production build**: `npm run preview`
+- **Deploy to GitHub Pages**: Automatic on push to `main` branch
 
 ### TypeScript Commands
 
@@ -118,6 +119,13 @@ The `FileUpload` component expects:
 - Uses 2-space indentation, single quotes, and trailing commas
 - Automatic formatting on `npm run format`
 - Format checking with `npm run format:check`
+
+### Deployment Configuration
+
+- **GitHub Pages**: Configured for automatic deployment via GitHub Actions
+- **Base URL**: Automatically set to `/ok-calls-logs-analyzer/` for production
+- **Workflow**: `.github/workflows/deploy.yml` handles build and deploy
+- **Live URL**: https://dimensi.github.io/ok-calls-logs-analyzer/ (after setup)
 
 ### Styling Approach
 
