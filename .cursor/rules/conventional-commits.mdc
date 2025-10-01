@@ -5,6 +5,17 @@ description: Conventional Commits format requirements
 
 # Conventional Commits - ОБЯЗАТЕЛЬНО
 
+### Git Commit Rules
+- **NEVER create commits automatically** - only when explicitly requested by user
+- **If asked to commit**: write concise messages without additional information
+- **ALWAYS use Conventional Commits** format: `<type>(<scope>): <description>`
+- Common types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
+- Examples:
+  - `feat: add log filtering functionality`
+  - `fix(LogDisplay): resolve rendering issue`
+  - `refactor(components): update to Svelte 5 runes`
+  - `chore: update dependencies`
+
 ## КРИТИЧЕСКИ ВАЖНО
 - **ВСЕГДА используйте Conventional Commits** для каждого коммита
 - **НИКОГДА не пишите обычные сообщения коммитов**
