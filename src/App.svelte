@@ -185,7 +185,7 @@
 
   .controls {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 16px;
     margin: 12px 0;
     padding: 12px;

@@ -32,7 +32,6 @@
 <style>
   /* Отображение выбранного файла */
   .selected-file {
-    margin-top: 12px;
     padding: 8px 12px;
     background: var(--color-bg-secondary);
     border: 1px solid var(--color-border-muted);
