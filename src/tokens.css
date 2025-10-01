@@ -8,68 +8,68 @@
      ======================================== */
 
   /* Background Colors */
-  --color-bg-primary: #555;
-  --color-bg-secondary: #444;
-  --color-bg-hover: rgba(255, 255, 255, 0.05);
+  --color-bg-primary: #2a2a2a;
+  --color-bg-secondary: #1e1e1e;
+  --color-bg-hover: rgba(255, 255, 255, 0.08);
 
   /* Text Colors */
-  --color-text-primary: #fff;
-  --color-text-secondary: #bbb;
-  --color-text-light: #6c757d;
+  --color-text-primary: #e8e8e8;
+  --color-text-secondary: #a0a0a0;
+  --color-text-light: #7a7a7a;
 
   /* Border Colors */
-  --color-border-muted: #747474;
+  --color-border-muted: #404040;
 
   /* ========================================
      Log Level Colors
      ======================================== */
 
   /* Debug Level */
-  --color-log-debug: #b8b8b8;
-  --color-log-debug-border: #6c757d;
+  --color-log-debug: #9ca3af;
+  --color-log-debug-border: #6b7280;
 
   /* Log Level */
-  --color-log-log: #fff;
-  --color-log-log-border: #198754;
-  --color-log-log-accent: #198754;
+  --color-log-log: #e8e8e8;
+  --color-log-log-border: #10b981;
+  --color-log-log-accent: #10b981;
 
   /* Warning Level */
-  --color-log-warn: #ffbd00;
-  --color-log-warn-border: #fd7e14;
-  --color-log-warn-accent: #fd7e14;
+  --color-log-warn: #f59e0b;
+  --color-log-warn-border: #f59e0b;
+  --color-log-warn-accent: #f59e0b;
 
   /* Error Level */
-  --color-log-error-bg: #a40000;
-  --color-log-error-border: #dc3545;
-  --color-log-error-accent: #dc3545;
+  --color-log-error-bg: #dc2626;
+  --color-log-error-border: #dc2626;
+  --color-log-error-accent: #dc2626;
 
   /* External Level */
-  --color-log-external-border: #6f42c1;
-  --color-log-external-accent: #6f42c1;
+  --color-log-external-border: #8b5cf6;
+  --color-log-external-accent: #8b5cf6;
 
   /* ========================================
      Interactive Colors
      ======================================== */
 
   /* Checkbox/Radio */
-  --color-checkbox-accent: #0d6efd;
+  --color-checkbox-accent: #3b82f6;
 
   /* Focus States */
-  --color-focus-outline: #007acc;
+  --color-focus-outline: #3b82f6;
 
   /* ========================================
      Spinner/Animation Colors
      ======================================== */
 
-  --color-spinner-bg: #666;
-  --color-spinner-active: #007acc;
+  --color-spinner-bg: #404040;
+  --color-spinner-active: #3b82f6;
 
   /* ========================================
      Drag & Drop Colors
      ======================================== */
 
-  --color-drag-overlay: rgba(16, 185, 129, 0.1);
-  --color-drag-text: #10b981;
+  --color-drag-overlay: rgba(59, 130, 246, 0.1);
+  --color-drag-text: #3b82f6;
 }
 
 /* ========================================
@@ -78,52 +78,52 @@
 
 [data-theme="light"] {
   /* Base Colors */
-  --color-bg-primary: #ffffff;
-  --color-bg-secondary: #f8f9fa;
-  --color-bg-hover: rgba(0, 0, 0, 0.05);
+  --color-bg-primary: #f8fafc;
+  --color-bg-secondary: #f1f5f9;
+  --color-bg-hover: rgba(0, 0, 0, 0.08);
 
   /* Text Colors */
-  --color-text-primary: #212529;
-  --color-text-secondary: #6c757d;
-  --color-text-light: #adb5bd;
+  --color-text-primary: #1e293b;
+  --color-text-secondary: #64748b;
+  --color-text-light: #94a3b8;
 
   /* Border Colors */
-  --color-border-muted: #dee2e6;
+  --color-border-muted: #e2e8f0;
 
   /* Log Level Colors */
-  --color-log-debug: #6c757d;
-  --color-log-debug-border: #adb5bd;
+  --color-log-debug: #64748b;
+  --color-log-debug-border: #94a3b8;
 
   /* Log Level */
-  --color-log-log: #212529;
-  --color-log-log-border: #198754;
-  --color-log-log-accent: #198754;
+  --color-log-log: #1e293b;
+  --color-log-log-border: #059669;
+  --color-log-log-accent: #059669;
 
   /* Warning Level */
-  --color-log-warn: #fd7e14;
-  --color-log-warn-border: #fd7e14;
-  --color-log-warn-accent: #fd7e14;
+  --color-log-warn: #d97706;
+  --color-log-warn-border: #d97706;
+  --color-log-warn-accent: #d97706;
 
   /* Error Level */
-  --color-log-error-bg: #dc3545;
-  --color-log-error-border: #dc3545;
-  --color-log-error-accent: #dc3545;
+  --color-log-error-bg: #dc2626;
+  --color-log-error-border: #dc2626;
+  --color-log-error-accent: #dc2626;
 
   /* External Level */
-  --color-log-external-border: #6f42c1;
-  --color-log-external-accent: #6f42c1;
+  --color-log-external-border: #7c3aed;
+  --color-log-external-accent: #7c3aed;
 
   /* Interactive Colors */
-  --color-checkbox-accent: #0d6efd;
-  --color-focus-outline: #0d6efd;
+  --color-checkbox-accent: #3b82f6;
+  --color-focus-outline: #3b82f6;
 
   /* Spinner/Animation Colors */
-  --color-spinner-bg: #e9ecef;
-  --color-spinner-active: #0d6efd;
+  --color-spinner-bg: #e2e8f0;
+  --color-spinner-active: #3b82f6;
 
   /* Drag & Drop Colors */
-  --color-drag-overlay: rgba(13, 110, 253, 0.1);
-  --color-drag-text: #0d6efd;
+  --color-drag-overlay: rgba(59, 130, 246, 0.1);
+  --color-drag-text: #3b82f6;
 }
 
 /* ========================================
@@ -132,52 +132,52 @@
 
 [data-theme="dark"] {
   /* Base Colors */
-  --color-bg-primary: #1a1a1a;
-  --color-bg-secondary: #2d2d2d;
-  --color-bg-hover: rgba(255, 255, 255, 0.05);
+  --color-bg-primary: #1e1e1e;
+  --color-bg-secondary: #2a2a2a;
+  --color-bg-hover: rgba(255, 255, 255, 0.08);
 
   /* Text Colors */
-  --color-text-primary: #ffffff;
-  --color-text-secondary: #cccccc;
-  --color-text-light: #adb5bd;
+  --color-text-primary: #e8e8e8;
+  --color-text-secondary: #a0a0a0;
+  --color-text-light: #7a7a7a;
 
   /* Border Colors */
   --color-border-muted: #404040;
 
   /* Log Level Colors */
-  --color-log-debug: #adb5bd;
-  --color-log-debug-border: #6c757d;
+  --color-log-debug: #9ca3af;
+  --color-log-debug-border: #6b7280;
 
   /* Log Level */
-  --color-log-log: #ffffff;
-  --color-log-log-border: #198754;
-  --color-log-log-accent: #198754;
+  --color-log-log: #e8e8e8;
+  --color-log-log-border: #10b981;
+  --color-log-log-accent: #10b981;
 
   /* Warning Level */
-  --color-log-warn: #ffbd00;
-  --color-log-warn-border: #fd7e14;
-  --color-log-warn-accent: #fd7e14;
+  --color-log-warn: #f59e0b;
+  --color-log-warn-border: #f59e0b;
+  --color-log-warn-accent: #f59e0b;
 
   /* Error Level */
-  --color-log-error-bg: #dc3545;
-  --color-log-error-border: #dc3545;
-  --color-log-error-accent: #dc3545;
+  --color-log-error-bg: #dc2626;
+  --color-log-error-border: #dc2626;
+  --color-log-error-accent: #dc2626;
 
   /* External Level */
-  --color-log-external-border: #6f42c1;
-  --color-log-external-accent: #6f42c1;
+  --color-log-external-border: #8b5cf6;
+  --color-log-external-accent: #8b5cf6;
 
   /* Interactive Colors */
-  --color-checkbox-accent: #0d6efd;
-  --color-focus-outline: #007acc;
+  --color-checkbox-accent: #3b82f6;
+  --color-focus-outline: #3b82f6;
 
   /* Spinner/Animation Colors */
   --color-spinner-bg: #404040;
-  --color-spinner-active: #007acc;
+  --color-spinner-active: #3b82f6;
 
   /* Drag & Drop Colors */
-  --color-drag-overlay: rgba(16, 185, 129, 0.1);
-  --color-drag-text: #10b981;
+  --color-drag-overlay: rgba(59, 130, 246, 0.1);
+  --color-drag-text: #3b82f6;
 }
 
 /* ========================================
@@ -187,104 +187,104 @@
 @media (prefers-color-scheme: light) {
   :root:not([data-theme]) {
     /* Base Colors */
-    --color-bg-primary: #ffffff;
-    --color-bg-secondary: #f8f9fa;
-    --color-bg-hover: rgba(0, 0, 0, 0.05);
+    --color-bg-primary: #f8fafc;
+    --color-bg-secondary: #f1f5f9;
+    --color-bg-hover: rgba(0, 0, 0, 0.08);
 
     /* Text Colors */
-    --color-text-primary: #212529;
-    --color-text-secondary: #6c757d;
-    --color-text-light: #adb5bd;
+    --color-text-primary: #1e293b;
+    --color-text-secondary: #64748b;
+    --color-text-light: #94a3b8;
 
     /* Border Colors */
-    --color-border-muted: #dee2e6;
+    --color-border-muted: #e2e8f0;
 
     /* Log Level Colors */
-    --color-log-debug: #6c757d;
-    --color-log-debug-border: #adb5bd;
+    --color-log-debug: #64748b;
+    --color-log-debug-border: #94a3b8;
 
     /* Log Level */
-    --color-log-log: #212529;
-    --color-log-log-border: #198754;
-    --color-log-log-accent: #198754;
+    --color-log-log: #1e293b;
+    --color-log-log-border: #059669;
+    --color-log-log-accent: #059669;
 
     /* Warning Level */
-    --color-log-warn: #fd7e14;
-    --color-log-warn-border: #fd7e14;
-    --color-log-warn-accent: #fd7e14;
+    --color-log-warn: #d97706;
+    --color-log-warn-border: #d97706;
+    --color-log-warn-accent: #d97706;
 
     /* Error Level */
-    --color-log-error-bg: #dc3545;
-    --color-log-error-border: #dc3545;
-    --color-log-error-accent: #dc3545;
+    --color-log-error-bg: #dc2626;
+    --color-log-error-border: #dc2626;
+    --color-log-error-accent: #dc2626;
 
     /* External Level */
-    --color-log-external-border: #6f42c1;
-    --color-log-external-accent: #6f42c1;
+    --color-log-external-border: #7c3aed;
+    --color-log-external-accent: #7c3aed;
 
     /* Interactive Colors */
-    --color-checkbox-accent: #0d6efd;
-    --color-focus-outline: #0d6efd;
+    --color-checkbox-accent: #3b82f6;
+    --color-focus-outline: #3b82f6;
 
     /* Spinner/Animation Colors */
-    --color-spinner-bg: #e9ecef;
-    --color-spinner-active: #0d6efd;
+    --color-spinner-bg: #e2e8f0;
+    --color-spinner-active: #3b82f6;
 
     /* Drag & Drop Colors */
-    --color-drag-overlay: rgba(13, 110, 253, 0.1);
-    --color-drag-text: #0d6efd;
+    --color-drag-overlay: rgba(59, 130, 246, 0.1);
+    --color-drag-text: #3b82f6;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
     /* Base Colors */
-    --color-bg-primary: #1a1a1a;
-    --color-bg-secondary: #2d2d2d;
-    --color-bg-hover: rgba(255, 255, 255, 0.05);
+    --color-bg-primary: #1e1e1e;
+    --color-bg-secondary: #2a2a2a;
+    --color-bg-hover: rgba(255, 255, 255, 0.08);
 
     /* Text Colors */
-    --color-text-primary: #ffffff;
-    --color-text-secondary: #cccccc;
-    --color-text-light: #adb5bd;
+    --color-text-primary: #e8e8e8;
+    --color-text-secondary: #a0a0a0;
+    --color-text-light: #7a7a7a;
 
     /* Border Colors */
     --color-border-muted: #404040;
 
     /* Log Level Colors */
-    --color-log-debug: #adb5bd;
-    --color-log-debug-border: #6c757d;
+    --color-log-debug: #9ca3af;
+    --color-log-debug-border: #6b7280;
 
     /* Log Level */
-    --color-log-log: #ffffff;
-    --color-log-log-border: #198754;
-    --color-log-log-accent: #198754;
+    --color-log-log: #e8e8e8;
+    --color-log-log-border: #10b981;
+    --color-log-log-accent: #10b981;
 
     /* Warning Level */
-    --color-log-warn: #ffbd00;
-    --color-log-warn-border: #fd7e14;
-    --color-log-warn-accent: #fd7e14;
+    --color-log-warn: #f59e0b;
+    --color-log-warn-border: #f59e0b;
+    --color-log-warn-accent: #f59e0b;
 
     /* Error Level */
-    --color-log-error-bg: #dc3545;
-    --color-log-error-border: #dc3545;
-    --color-log-error-accent: #dc3545;
+    --color-log-error-bg: #dc2626;
+    --color-log-error-border: #dc2626;
+    --color-log-error-accent: #dc2626;
 
     /* External Level */
-    --color-log-external-border: #6f42c1;
-    --color-log-external-accent: #6f42c1;
+    --color-log-external-border: #8b5cf6;
+    --color-log-external-accent: #8b5cf6;
 
     /* Interactive Colors */
-    --color-checkbox-accent: #0d6efd;
-    --color-focus-outline: #007acc;
+    --color-checkbox-accent: #3b82f6;
+    --color-focus-outline: #3b82f6;
 
     /* Spinner/Animation Colors */
     --color-spinner-bg: #404040;
-    --color-spinner-active: #007acc;
+    --color-spinner-active: #3b82f6;
 
     /* Drag & Drop Colors */
-    --color-drag-overlay: rgba(16, 185, 129, 0.1);
-    --color-drag-text: #10b981;
+    --color-drag-overlay: rgba(59, 130, 246, 0.1);
+    --color-drag-text: #3b82f6;
   }
 }
 

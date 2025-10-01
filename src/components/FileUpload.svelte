@@ -240,13 +240,13 @@
     border-color: var(--color-focus-outline);
     background: var(--color-bg-primary);
     transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(0, 122, 204, 0.3);
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
   }
 
   .file-upload:focus {
     outline: none;
     border-color: var(--color-focus-outline);
-    box-shadow: 0 0 0 3px rgba(0, 122, 204, 0.2);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
   }
 
   .upload-content {
