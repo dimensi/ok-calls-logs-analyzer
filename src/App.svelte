@@ -4,6 +4,7 @@
     LogEntryInternal,
     LogFilter,
     SortOrder,
+    SearchMode,
   } from './types';
   import FileUpload from './components/FileUpload.svelte';
   import LogControls from './components/LogControls.svelte';
@@ -27,7 +28,30 @@
 
   let sortOrder = $state<SortOrder>('asc');
   let searchText = $state('');
+  let searchMode = $state<SearchMode>('text');
+  let searchError = $state<string | null>(null);
   let logDisplayRef = $state<LogDisplay | undefined>(undefined);
+
+  // Функция для валидации регулярного выражения
+  function validateRegex(pattern: string): string | null {
+    if (!pattern.trim()) return null;
+    try {
+      new RegExp(pattern.trim(), 'i');
+      return null;
+    } catch (error) {
+      return error instanceof Error ? error.message : 'Некорректное регулярное выражение';
+    }
+  }
+
+  // Функция для проверки соответствия текста регулярному выражению
+  function matchesRegex(text: string, pattern: string): boolean {
+    try {
+      const regex = new RegExp(pattern.trim(), 'i');
+      return regex.test(text);
+    } catch {
+      return false;
+    }
+  }
 
   let filteredLog = $derived.by(() => {
     if (!isFileLoaded) return [];
@@ -60,10 +84,17 @@
 
     // Apply search filter
     if (searchText.trim()) {
-      const words = searchText.trim().toLowerCase().split(' ');
       result = result.filter((entry) => {
-        const logStr = JSON.stringify(entry.d).toLowerCase();
-        return words.every((word) => logStr.includes(word));
+        const logStr = JSON.stringify(entry.d);
+        
+        if (searchMode === 'regex') {
+          return matchesRegex(logStr, searchText);
+        } else {
+          // Обычный текстовый поиск
+          const words = searchText.trim().toLowerCase().split(' ');
+          const logStrLower = logStr.toLowerCase();
+          return words.every((word) => logStrLower.includes(word));
+        }
       });
     }
 
@@ -111,6 +142,22 @@
 
   function handleSearchChange(newSearchText: string) {
     searchText = newSearchText;
+    // Валидируем regex при изменении текста
+    if (searchMode === 'regex') {
+      searchError = validateRegex(newSearchText);
+    } else {
+      searchError = null;
+    }
+  }
+
+  function handleSearchModeChange(newSearchMode: SearchMode) {
+    searchMode = newSearchMode;
+    // Валидируем regex при смене режима
+    if (newSearchMode === 'regex') {
+      searchError = validateRegex(searchText);
+    } else {
+      searchError = null;
+    }
   }
 
   function handleResetExpanded() {
@@ -135,9 +182,12 @@
           {filters}
           {sortOrder}
           {searchText}
+          {searchMode}
+          {searchError}
           onFiltersChange={handleFiltersChange}
           onSortChange={handleSortChange}
           onSearchChange={handleSearchChange}
+          onSearchModeChange={handleSearchModeChange}
           onResetExpanded={handleResetExpanded}
         >
           {#if selectedFileName}

@@ -20,6 +20,8 @@ export interface LogFilter {
 
 export type SortOrder = 'asc' | 'desc';
 
+export type SearchMode = 'text' | 'regex';
+
 // Svelte 5 runes types
 export type State<T> = T;
 export type Derived<T> = T;
