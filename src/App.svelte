@@ -32,6 +32,27 @@
   let searchError = $state<string | null>(null);
   let logDisplayRef = $state<LogDisplay | undefined>(undefined);
 
+  // Функция для валидации регулярного выражения
+  function validateRegex(pattern: string): string | null {
+    if (!pattern.trim()) return null;
+    try {
+      new RegExp(pattern.trim(), 'i');
+      return null;
+    } catch (error) {
+      return error instanceof Error ? error.message : 'Некорректное регулярное выражение';
+    }
+  }
+
+  // Функция для проверки соответствия текста регулярному выражению
+  function matchesRegex(text: string, pattern: string): boolean {
+    try {
+      const regex = new RegExp(pattern.trim(), 'i');
+      return regex.test(text);
+    } catch {
+      return false;
+    }
+  }
+
   let filteredLog = $derived.by(() => {
     if (!isFileLoaded) return [];
 
@@ -67,15 +88,7 @@
         const logStr = JSON.stringify(entry.d);
         
         if (searchMode === 'regex') {
-          try {
-            const regex = new RegExp(searchText.trim(), 'i');
-            searchError = null;
-            return regex.test(logStr);
-          } catch (error) {
-            // Если регулярное выражение некорректное, показываем ошибку
-            searchError = error instanceof Error ? error.message : 'Некорректное регулярное выражение';
-            return false;
-          }
+          return matchesRegex(logStr, searchText);
         } else {
           // Обычный текстовый поиск
           const words = searchText.trim().toLowerCase().split(' ');
@@ -129,11 +142,22 @@
 
   function handleSearchChange(newSearchText: string) {
     searchText = newSearchText;
+    // Валидируем regex при изменении текста
+    if (searchMode === 'regex') {
+      searchError = validateRegex(newSearchText);
+    } else {
+      searchError = null;
+    }
   }
 
   function handleSearchModeChange(newSearchMode: SearchMode) {
     searchMode = newSearchMode;
-    searchError = null; // Очищаем ошибку при смене режима
+    // Валидируем regex при смене режима
+    if (newSearchMode === 'regex') {
+      searchError = validateRegex(searchText);
+    } else {
+      searchError = null;
+    }
   }
 
   function handleResetExpanded() {
