@@ -1,7 +1,7 @@
 <script lang="ts">
   import { VList, type VListHandle } from 'virtua/svelte';
   import type { LogEntryInternal } from '../types';
-  import { SvelteSet } from 'svelte/reactivity';
+  import { SvelteMap, SvelteSet } from 'svelte/reactivity';
 
   interface Props {
     logs: LogEntryInternal[];
@@ -14,6 +14,7 @@
   let list = $state<VListHandle>();
   // State for expanded lines
   let expandedLines = new SvelteSet<string>();
+  let expandedLinesHeight = new SvelteMap<string, number>();
 
   function logToString(log: any[], expand = false): string {
     return log
@@ -26,17 +27,23 @@
       .join(' ');
   }
 
-  function highlightText(text: string, searchText: string, searchMode: 'text' | 'regex'): string {
+  function highlightText(
+    text: string,
+    searchText: string,
+    searchMode: 'text' | 'regex'
+  ): string {
     if (!searchText.trim()) return text;
 
     try {
       let regex: RegExp;
-      
+
       if (searchMode === 'regex') {
         regex = new RegExp(`(${searchText.trim()})`, 'gi');
       } else {
         // Экранируем специальные символы для обычного текстового поиска
-        const escapedText = searchText.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const escapedText = searchText
+          .trim()
+          .replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         regex = new RegExp(`(${escapedText})`, 'gi');
       }
 
@@ -47,11 +54,14 @@
     }
   }
 
-  function toggleExpand(logEntryKey: string) {
+  function toggleExpand(logEntry: LogEntryInternal) {
+    const logEntryKey = logEntry.key;
     if (expandedLines.has(logEntryKey)) {
       expandedLines.delete(logEntryKey);
+      expandedLinesHeight.delete(logEntryKey);
     } else {
       expandedLines.add(logEntryKey);
+      expandedLinesHeight.set(logEntryKey, getItemHeight(logEntry));
     }
   }
 
@@ -71,7 +81,7 @@
       // Для раскрытых строк считаем количество строк по количеству \n
       const lineCount = content.split('\n').length + 2;
       // 20px на строку + небольшой отступ
-      return Math.max(baseHeight, lineCount * 20 + 8);
+      return Math.max(baseHeight, lineCount * baseHeight);
     } else {
       // Для свернутых строк — чуть выше, если длинный текст
       if (content.length > 100) {
@@ -120,15 +130,19 @@
           <div
             class="line level-{logEntry.l.toLowerCase()}"
             class:wrap={expandedLines.has(logEntry.key)}
-            onclick={() => toggleExpand(logEntry.key)}
+            onclick={() => toggleExpand(logEntry)}
             role="button"
             tabindex="0"
-            onkeydown={(e) => e.key === 'Enter' && toggleExpand(logEntry.key)}
-            style="height: {getItemHeight(logEntry)}px;"
+            onkeydown={(e) => e.key === 'Enter' && toggleExpand(logEntry)}
+            style="height: {expandedLinesHeight.get(logEntry.key)}px;"
           >
             <div class="line-time">{logEntry.h}</div>
             <div class="line-data">
-              {@html highlightText(logToString(logEntry.d, expandedLines.has(logEntry.key)), searchText, searchMode)}
+              {@html highlightText(
+                logToString(logEntry.d, expandedLines.has(logEntry.key)),
+                searchText,
+                searchMode
+              )}
             </div>
           </div>
         {/if}
