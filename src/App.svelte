@@ -127,7 +127,7 @@
       <ThemeToggle />
     </div>
 
-    <div class="controls">
+    <div class="controls" class:controls--center={!selectedFileName}>
       <FileUpload onFileLoad={handleFileLoad} bind:selectedFileName />
 
       {#if isFileLoaded}
@@ -185,13 +185,17 @@
 
   .controls {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 16px;
     margin: 12px 0;
     padding: 12px;
     background: var(--color-bg-secondary);
     border-radius: 8px;
     border: 1px solid var(--color-border-muted);
+  }
+
+  .controls--center {
+    justify-content: center;
   }
 
   /* Адаптивность */
