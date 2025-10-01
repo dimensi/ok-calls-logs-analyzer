@@ -4,6 +4,7 @@
     LogEntryInternal,
     LogFilter,
     SortOrder,
+    SearchMode,
   } from './types';
   import FileUpload from './components/FileUpload.svelte';
   import LogControls from './components/LogControls.svelte';
@@ -27,6 +28,8 @@
 
   let sortOrder = $state<SortOrder>('asc');
   let searchText = $state('');
+  let searchMode = $state<SearchMode>('text');
+  let searchError = $state<string | null>(null);
   let logDisplayRef = $state<LogDisplay | undefined>(undefined);
 
   let filteredLog = $derived.by(() => {
@@ -60,10 +63,25 @@
 
     // Apply search filter
     if (searchText.trim()) {
-      const words = searchText.trim().toLowerCase().split(' ');
       result = result.filter((entry) => {
-        const logStr = JSON.stringify(entry.d).toLowerCase();
-        return words.every((word) => logStr.includes(word));
+        const logStr = JSON.stringify(entry.d);
+        
+        if (searchMode === 'regex') {
+          try {
+            const regex = new RegExp(searchText.trim(), 'i');
+            searchError = null;
+            return regex.test(logStr);
+          } catch (error) {
+            // Если регулярное выражение некорректное, показываем ошибку
+            searchError = error instanceof Error ? error.message : 'Некорректное регулярное выражение';
+            return false;
+          }
+        } else {
+          // Обычный текстовый поиск
+          const words = searchText.trim().toLowerCase().split(' ');
+          const logStrLower = logStr.toLowerCase();
+          return words.every((word) => logStrLower.includes(word));
+        }
       });
     }
 
@@ -113,6 +131,11 @@
     searchText = newSearchText;
   }
 
+  function handleSearchModeChange(newSearchMode: SearchMode) {
+    searchMode = newSearchMode;
+    searchError = null; // Очищаем ошибку при смене режима
+  }
+
   function handleResetExpanded() {
     if (logDisplayRef) {
       logDisplayRef.resetExpanded();
@@ -135,9 +158,12 @@
           {filters}
           {sortOrder}
           {searchText}
+          {searchMode}
+          {searchError}
           onFiltersChange={handleFiltersChange}
           onSortChange={handleSortChange}
           onSearchChange={handleSearchChange}
+          onSearchModeChange={handleSearchModeChange}
           onResetExpanded={handleResetExpanded}
         >
           {#if selectedFileName}

@@ -1,14 +1,17 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
-  import type { LogFilter, SortOrder } from '../types';
+  import type { LogFilter, SortOrder, SearchMode } from '../types';
 
   interface Props {
     filters: LogFilter;
     sortOrder: SortOrder;
     searchText: string;
+    searchMode: SearchMode;
+    searchError?: string | null;
     onFiltersChange: (filters: LogFilter) => void;
     onSortChange: (sortOrder: SortOrder) => void;
     onSearchChange: (searchText: string) => void;
+    onSearchModeChange: (searchMode: SearchMode) => void;
     onResetExpanded?: () => void;
     children?: Snippet;
   }
@@ -17,9 +20,12 @@
     filters,
     sortOrder,
     searchText,
+    searchMode,
+    searchError,
     onFiltersChange,
     onSortChange,
     onSearchChange,
+    onSearchModeChange,
     onResetExpanded,
     children,
   }: Props = $props();
@@ -37,6 +43,11 @@
   function handleSearchChange(event: Event) {
     const target = event.target as HTMLInputElement;
     onSearchChange(target.value);
+  }
+
+  function handleSearchModeChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    onSearchModeChange(target.value as SearchMode);
   }
 </script>
 
@@ -122,14 +133,40 @@
   </div>
 
   <div class="control-search">
+    <div class="search-mode-toggle">
+      <div class="control">
+        <input
+          type="radio"
+          id="search-text"
+          name="searchMode"
+          value="text"
+          checked={searchMode === 'text'}
+          onchange={handleSearchModeChange}
+        />
+        <label for="search-text">Текст</label>
+      </div>
+      <div class="control">
+        <input
+          type="radio"
+          id="search-regex"
+          name="searchMode"
+          value="regex"
+          checked={searchMode === 'regex'}
+          onchange={handleSearchModeChange}
+        />
+        <label for="search-regex">Regex</label>
+      </div>
+    </div>
+    
     <div class="search-container">
       <input
         type="text"
         id="search"
-        placeholder="Поиск по логам..."
+        placeholder={searchMode === 'regex' ? 'Регулярное выражение...' : 'Поиск по логам...'}
         autocomplete="off"
         bind:value={searchText}
         oninput={handleSearchChange}
+        class:regex-mode={searchMode === 'regex'}
       />
       {#if searchText}
         <button
@@ -142,6 +179,40 @@
         </button>
       {/if}
     </div>
+    
+    {#if searchError}
+      <div class="search-error">
+        <span class="error-icon">⚠</span>
+        <span class="error-text">{searchError}</span>
+      </div>
+    {/if}
+    
+    {#if searchMode === 'regex'}
+      <div class="regex-hint">
+        <details>
+          <summary>Подсказка по регулярным выражениям</summary>
+          <div class="hint-content">
+            <p><strong>Основные символы:</strong></p>
+            <ul>
+              <li><code>.</code> - любой символ</li>
+              <li><code>*</code> - ноль или более повторений</li>
+              <li><code>+</code> - одно или более повторений</li>
+              <li><code>?</code> - ноль или одно повторение</li>
+              <li><code>^</code> - начало строки</li>
+              <li><code>$</code> - конец строки</li>
+              <li><code>[]</code> - набор символов</li>
+              <li><code>|</code> - или</li>
+            </ul>
+            <p><strong>Примеры:</strong></p>
+            <ul>
+              <li><code>error.*</code> - строки, начинающиеся с "error"</li>
+              <li><code>.*\d{4}.*</code> - строки, содержащие 4 цифры подряд</li>
+              <li><code>^(warn|error)</code> - строки, начинающиеся с "warn" или "error"</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    {/if}
   </div>
 
   {#if onResetExpanded}
@@ -190,6 +261,16 @@
     padding: 8px 12px;
     background: var(--color-bg-primary);
     border-radius: 6px;
+    border: 1px solid var(--color-border-muted);
+  }
+
+  .search-mode-toggle {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 8px;
+    padding: 4px 8px;
+    background: var(--color-bg-secondary);
+    border-radius: 4px;
     border: 1px solid var(--color-border-muted);
   }
 
@@ -312,6 +393,16 @@
     box-shadow: 0 0 0 2px rgba(0, 122, 204, 0.2);
   }
 
+  #search.regex-mode {
+    border-color: var(--color-log-warn-accent);
+    background: rgba(253, 126, 20, 0.05);
+  }
+
+  #search.regex-mode:focus {
+    border-color: var(--color-log-warn-accent);
+    box-shadow: 0 0 0 2px rgba(253, 126, 20, 0.2);
+  }
+
   #search::placeholder {
     color: var(--color-text-secondary);
   }
@@ -371,6 +462,88 @@
 
   .reset-button:active {
     transform: translateY(1px);
+  }
+
+  .search-error {
+    margin-top: 6px;
+    padding: 6px 8px;
+    background: rgba(220, 53, 69, 0.1);
+    border: 1px solid var(--color-log-error-border);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+  }
+
+  .error-icon {
+    color: var(--color-log-error-accent);
+    font-weight: bold;
+  }
+
+  .error-text {
+    color: var(--color-log-error-accent);
+    flex: 1;
+  }
+
+  .regex-hint {
+    margin-top: 8px;
+    font-size: 12px;
+  }
+
+  .regex-hint details {
+    border: 1px solid var(--color-border-muted);
+    border-radius: 4px;
+    background: var(--color-bg-secondary);
+  }
+
+  .regex-hint summary {
+    padding: 6px 8px;
+    cursor: pointer;
+    background: var(--color-bg-hover);
+    border-radius: 4px 4px 0 0;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    transition: background-color 0.2s ease;
+  }
+
+  .regex-hint summary:hover {
+    background: var(--color-bg-hover);
+  }
+
+  .regex-hint details[open] summary {
+    border-radius: 4px 4px 0 0;
+  }
+
+  .hint-content {
+    padding: 8px;
+    border-top: 1px solid var(--color-border-muted);
+  }
+
+  .hint-content p {
+    margin: 0 0 6px 0;
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
+
+  .hint-content ul {
+    margin: 0 0 8px 0;
+    padding-left: 16px;
+  }
+
+  .hint-content li {
+    margin: 2px 0;
+    color: var(--color-text-secondary);
+  }
+
+  .hint-content code {
+    background: var(--color-bg-primary);
+    border: 1px solid var(--color-border-muted);
+    border-radius: 2px;
+    padding: 1px 4px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--color-log-warn-accent);
   }
 
   /* Адаптивность */
