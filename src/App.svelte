@@ -205,7 +205,12 @@
     </div>
   {:else if isFileLoaded}
     <div class="log-display">
-      <LogDisplay logs={filteredLog} bind:this={logDisplayRef} />
+      <LogDisplay 
+        logs={filteredLog} 
+        {searchText}
+        {searchMode}
+        bind:this={logDisplayRef} 
+      />
     </div>
   {/if}
 </main>

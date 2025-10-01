@@ -124,6 +124,10 @@
   /* Drag & Drop Colors */
   --color-drag-overlay: rgba(59, 130, 246, 0.1);
   --color-drag-text: #3b82f6;
+
+  /* Search Highlight Colors */
+  --color-search-highlight-bg: #fef08a;
+  --color-search-highlight-text: #000;
 }
 
 /* ========================================
@@ -178,6 +182,10 @@
   /* Drag & Drop Colors */
   --color-drag-overlay: rgba(59, 130, 246, 0.1);
   --color-drag-text: #3b82f6;
+
+  /* Search Highlight Colors */
+  --color-search-highlight-bg: #ffeb3b;
+  --color-search-highlight-text: #000;
 }
 
 /* ========================================
@@ -233,6 +241,10 @@
     /* Drag & Drop Colors */
     --color-drag-overlay: rgba(59, 130, 246, 0.1);
     --color-drag-text: #3b82f6;
+
+    /* Search Highlight Colors */
+    --color-search-highlight-bg: #fef08a;
+    --color-search-highlight-text: #000;
   }
 }
 
@@ -285,6 +297,10 @@
     /* Drag & Drop Colors */
     --color-drag-overlay: rgba(59, 130, 246, 0.1);
     --color-drag-text: #3b82f6;
+
+    /* Search Highlight Colors */
+    --color-search-highlight-bg: #ffeb3b;
+    --color-search-highlight-text: #000;
   }
 }
 

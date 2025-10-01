@@ -5,9 +5,11 @@
 
   interface Props {
     logs: LogEntryInternal[];
+    searchText?: string;
+    searchMode?: 'text' | 'regex';
   }
 
-  let { logs }: Props = $props();
+  let { logs, searchText = '', searchMode = 'text' }: Props = $props();
   let internalLogs = $state.raw<LogEntryInternal[]>(logs);
   let list = $state<VListHandle>();
   // State for expanded lines
@@ -22,6 +24,27 @@
         return JSON.stringify(item, null, expand ? 2 : undefined);
       })
       .join(' ');
+  }
+
+  function highlightText(text: string, searchText: string, searchMode: 'text' | 'regex'): string {
+    if (!searchText.trim()) return text;
+
+    try {
+      let regex: RegExp;
+      
+      if (searchMode === 'regex') {
+        regex = new RegExp(`(${searchText.trim()})`, 'gi');
+      } else {
+        // Экранируем специальные символы для обычного текстового поиска
+        const escapedText = searchText.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        regex = new RegExp(`(${escapedText})`, 'gi');
+      }
+
+      return text.replace(regex, '<mark class="search-highlight">$1</mark>');
+    } catch {
+      // Если regex некорректный, возвращаем исходный текст
+      return text;
+    }
   }
 
   function toggleExpand(logEntryKey: string) {
@@ -105,7 +128,7 @@
           >
             <div class="line-time">{logEntry.h}</div>
             <div class="line-data">
-              {logToString(logEntry.d, expandedLines.has(logEntry.key))}
+              {@html highlightText(logToString(logEntry.d, expandedLines.has(logEntry.key)), searchText, searchMode)}
             </div>
           </div>
         {/if}
@@ -183,5 +206,13 @@
     word-break: break-all;
     overflow: visible;
     text-overflow: unset;
+  }
+
+  :global(.search-highlight) {
+    background-color: var(--color-search-highlight-bg, #ffeb3b);
+    color: var(--color-search-highlight-text, #000);
+    padding: 1px 2px;
+    border-radius: 2px;
+    font-weight: 600;
   }
 </style>
