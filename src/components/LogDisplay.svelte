@@ -166,6 +166,10 @@
     text-overflow: ellipsis;
   }
 
+  .line.wrap {
+    background-color: var(--color-bg-hover);
+  }
+
   .line.wrap .line-data {
     white-space: pre-wrap;
     word-break: break-all;
