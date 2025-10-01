@@ -84,23 +84,31 @@
       bind:this={list}
       data={internalLogs}
       style="height: 100%; width: 100%;"
-      getKey={(logEntry) => logEntry.key}
+      getKey={(logEntry) => {
+        try {
+          return logEntry.key;
+        } catch {
+          return Math.random().toString(36).substring(2, 15);
+        }
+      }}
     >
       {#snippet children(logEntry)}
-        <div
-          class="line level-{logEntry.l.toLowerCase()}"
-          class:wrap={expandedLines.has(logEntry.key)}
-          onclick={() => toggleExpand(logEntry.key)}
-          role="button"
-          tabindex="0"
-          onkeydown={(e) => e.key === 'Enter' && toggleExpand(logEntry.key)}
-          style="height: {getItemHeight(logEntry)}px;"
-        >
-          <div class="line-time">{logEntry.h}</div>
-          <div class="line-data">
-            {logToString(logEntry.d, expandedLines.has(logEntry.key))}
+        {#if logEntry}
+          <div
+            class="line level-{logEntry.l.toLowerCase()}"
+            class:wrap={expandedLines.has(logEntry.key)}
+            onclick={() => toggleExpand(logEntry.key)}
+            role="button"
+            tabindex="0"
+            onkeydown={(e) => e.key === 'Enter' && toggleExpand(logEntry.key)}
+            style="height: {getItemHeight(logEntry)}px;"
+          >
+            <div class="line-time">{logEntry.h}</div>
+            <div class="line-data">
+              {logToString(logEntry.d, expandedLines.has(logEntry.key))}
+            </div>
           </div>
-        </div>
+        {/if}
       {/snippet}
     </VList>
   {/if}
